@@ -55,6 +55,7 @@ const THREAD_PAGE_SETTINGS: CssVariableSetting[] = [
 ];
 export const getSettingsBySlug = async ({
   userSettings,
+  realmSlug,
 }: {
   userSettings: SettingEntry[];
   realmSlug: string;
@@ -65,6 +66,8 @@ export const getSettingsBySlug = async ({
     board_page: [] as CssVariableSetting[],
     thread_page: [] as CssVariableSetting[],
   };
+  // TODO: make a type of base settings so cursor is a known property.
+  // @ts-expect-error
   baseSettings.root.cursor = getRealmCursorSetting(
     CURSOR_SETTINGS,
     userSettings
@@ -428,6 +431,33 @@ export const getRealmRoles = async ({
     realm_external_id: realmExternalId,
   });
   return realmRoles;
+};
+
+export const createRealmRole = async({
+  roleName,
+  roleAvatar,
+  color,
+  description,
+  permissions
+}: {
+  roleName: string;
+  roleAvatar: string;
+  color: string;
+  description: string;
+  permissions: string[];
+}): => {
+  roleExternalId = uuidv4();
+
+    await t.one(sql.createRoleInRealm, {
+      role_external_id: roleExternalId,
+      role_name: roleName,
+      role_avatar: roleAvatar,
+      color: color,
+      description: description,
+      permissions: permissions
+    });
+    log(`Created thread entry for thread ${newThreadExternalId}`);
+
 };
 
 export const createBoard = async (metadata: {
