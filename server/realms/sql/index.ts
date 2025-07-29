@@ -125,6 +125,7 @@ export default {
   getInvites,
   addUserToRealm,
   findUserOnRealm,
+  createRoleInRealm,
   fetchRolesInRealm,
   createBoard,
 };

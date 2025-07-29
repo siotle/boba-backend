@@ -12,6 +12,7 @@ import {
   getInviteDetails,
   getRealmByExternalId,
   getRealmInvites,
+  createRealmRole,
   getRealmRoles,
   getUserPermissionsForRealm,
 } from "./queries.js";
@@ -953,7 +954,7 @@ router.post(
         permissions 
       } = req.body;
 
-      await createRealmRole({
+      const newRoleExternalId = await createRealmRole({
         roleName,
         roleAvatar,
         color,

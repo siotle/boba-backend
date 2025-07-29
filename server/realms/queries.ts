@@ -433,7 +433,7 @@ export const getRealmRoles = async ({
   return realmRoles;
 };
 
-export const createRealmRole = async({
+export const createRealmRole = async ({
   roleName,
   roleAvatar,
   color,
@@ -445,19 +445,21 @@ export const createRealmRole = async({
   color: string;
   description: string;
   permissions: string[];
-}): => {
-  roleExternalId = uuidv4();
+}): Promise<boolean> => {
+  const roleExternalId = uuidv4();
 
-    await t.one(sql.createRoleInRealm, {
-      role_external_id: roleExternalId,
-      role_name: roleName,
-      role_avatar: roleAvatar,
-      color: color,
-      description: description,
-      permissions: permissions
-    });
-    log(`Created thread entry for thread ${newThreadExternalId}`);
+  await pool.none(sql.createRoleInRealm, {
+    role_external_id: roleExternalId,
+    role_name: roleName,
+    role_avatar: roleAvatar,
+    color: color,
+    description: description,
+    permissions: permissions
+  });
 
+  log(`Created role entry for role ${roleExternalId}`);
+
+  return true
 };
 
 export const createBoard = async (metadata: {
