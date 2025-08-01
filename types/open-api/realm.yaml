@@ -92,25 +92,48 @@ components:
           items:
             type: object
             properties:
-              user_id:
-                type: string
-                format: uuid
-              username:
-                description: Username.
+              role_name:
+                description: Name of role.
                 type: string
               role_string_id:
                 description: String id of role.
                 type: string
                 format: uuid
-              role_name:
-                description: Name of role.
+              role_avatar:
+                description: URL for the avatar associated with the role.
                 type: string
-              label:
-                description: Label associated with role assignment
+              color:
+                description: Color associated with role.
                 type: string
+              description:
+                description: Description of role.
+                type: string
+              permissions: 
+                description: The realm-level permissions for the role.
+                $ref: "#/components/schemas/RealmPermissions"
+              users:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: string
+                      format: uuid
+                    username:
+                      description: Username.
+                      type: string
+                    label:
+                      description: Label associated with role assignment
+                      type: string
+                  required:
+                    - user_id
+                    - username
+                    - label
             required:
-              - user_firebase_id
-              - username
-              - role_string_id
               - role_name
-              - label
+              - role_string_id
+              - role_avatar
+              - color
+              - description
+              - permissions
+              - users
