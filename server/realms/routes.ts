@@ -828,12 +828,24 @@ router.post(
  *             examples:
  *               twisted_minds:
  *                 value:
- *                   invites:
- *                     - user_firebase_id: "a90b0809-2c57-4ff1-be7c-4b7ab1b7edcc"
- *                       username: "bobatan"
+ *                   roles:
+ *                     - role_name: "The Owner"
  *                       role_string_id: "3df1d417-c36a-43dd-aaba-9590316ffc32"
- *                       role_name: "The Owner"
- *                       label: "Look ma, a label"
+ *                       role_avatar: "some url somewhere"
+ *                       color: "mauve"
+ *                       description: "a description!"
+ *                       permissions:
+ *                        [
+ *                          create_realm_invite,
+ *                          post_on_realm,
+ *                          comment_on_realm,
+ *                          create_thread_on_realm,
+ *                          access_locked_boards_on_realm,
+ *                        ]
+ *                       users: 
+ *                         - username: "bobatan"
+ *                           user_id: "a90b0809-2c57-4ff1-be7c-4b7ab1b7edcc"
+ *                           label: "Look ma, a label"
  *       401:
  *         $ref: "#/components/responses/ensureLoggedIn401"
  *       403:
