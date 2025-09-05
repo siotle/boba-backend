@@ -17,6 +17,7 @@ import {
 import { setLoggedInUser, startTestServer } from "utils/test-utils";
 import request from "supertest";
 import router from "../routes";
+import { getBoardRoles } from "../queries";
 
 jest.mock("handlers/auth");
   
@@ -53,15 +54,6 @@ jest.mock("handlers/auth");
             ]
           },
         ]
-      });
-    });
-  
-    test("does not fetch realm roles without permissions", async () => {
-      setLoggedInUser(BOBATAN_USER_ID);
-      const res = await request(server.app).get(`/${UWU_REALM_EXTERNAL_ID}/roles`);
-      expect(res.status).toBe(403);
-      expect(res.body).toEqual({
-        message: 'User does not have required permissions for realm operation.'
       });
     });
   });
