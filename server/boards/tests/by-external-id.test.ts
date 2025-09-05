@@ -83,12 +83,14 @@ const GORE_BOARD_LOGGED_IN: BoardByExternalId = {
   muted: false,
   permissions: [
     "edit_board_details",
+    "delete_board",
     "edit_category_tags",
     "edit_content_notices",
     "move_thread",
     "create_realm_invite",
     "view_roles_on_realm",
     "view_roles_on_board",
+    "create_board_on_realm",
   ],
   pinned_order: 1,
   posting_identities: [
