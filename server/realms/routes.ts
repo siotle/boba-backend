@@ -847,7 +847,7 @@ router.post(
  *                        ]
  *                       users: 
  *                         - username: "bobatan"
- *                           user_id: "a90b0809-2c57-4ff1-be7c-4b7ab1b7edcc"
+ *                           user_firebase_id: "c6HimTlg2RhVH3fC1psXZORdLcx2"
  *                           label: "Look ma, a label"
  *       401:
  *         $ref: "#/components/responses/ensureLoggedIn401"
